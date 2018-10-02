@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>handleBar</title>
+    <style>
+        table, th, td {
+            border: 1px solid red;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .student-temp {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<div class="spring">
+    <table>
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>分数</th>
+        </tr>
+        </thead>
+        <tbody class="student-temp">
+        <script type="text/x-handlebars-template" id="student-temp">
+            <tr>
+                <td>{{name}}</td>
+                <td>{{age}}</td>
+                <td>{{gender}}</td>
+                <td>{{fraction}}</td>
+            </tr>
+        </script>
+        </tbody>
+    </table>
+    <div class="summer">
+        <script type="text/x-handlebars" id="my">
+            <p>{{str}}</p>
+        </script>
+    </div>
+
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="js/handlebars-v4.0.12.js"></script>
+<script>
+    //    模拟数据
+    var data = {
+        "name": "柳2",
+        "age": '8',
+        "gender": '女',
+        "fraction": '89'
+    };
+    var strData ={
+        str: "tom"
+    };
+    // var  str= "tom";
+    console.log(data);
+
+    //    获取到handlebars这个模板中的全部html内容
+    var studentTemp = $('#student-temp').html();
+    var my= $('#my').html();
+    //    编译
+    var HanStudent = Handlebars.compile(studentTemp);
+    var HanMy = Handlebars.compile(my);
+
+    //把编译完成的代码放入到 .student-temp 的这个容器中
+    $('.student-temp').html(HanStudent(data));
+    $('.summer').html(HanMy(strData));
+</script>
+</html>
